@@ -68,3 +68,18 @@ class InternationalMelonOrder(AbstractMelonOrder):
             total += international_fee
 
         return total
+
+
+class GovernmentMelonOrder(AbstractMelonOrder):
+
+    def __init__(self, species, qty, passed_inspection=False):
+        self.passed_inspection = passed_inspection
+        return super(GovernmentMelonOrder, self).__init__(species, qty,
+                                                          order_type="government",
+                                                          tax=0)
+
+    def mark_inspection(self, passed):
+        """ Check if the melon has passed govenment inspection """
+
+        if passed is True:
+            self.passed_inspection = True
